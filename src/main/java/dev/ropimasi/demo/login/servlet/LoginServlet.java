@@ -6,9 +6,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-import dev.ropimasi.demo.login.dao.LoginDao;
+import dev.ropimasi.demo.login.dao.PasswordDao;
+import dev.ropimasi.demo.login.model.dto.AuthenticationDto;
+import dev.ropimasi.demo.login.service.AuthenticationService;
 import dev.ropimasi.demo.login.utility.MyMD5;
 import dev.ropimasi.demo.login.utility.MySHA512;
 
@@ -18,7 +21,8 @@ import dev.ropimasi.demo.login.utility.MySHA512;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private LoginDao loginDao = new LoginDao();
+	private PasswordDao loginDao = new PasswordDao();
+	private AuthenticationService authService = new AuthenticationService();
 
 
 	public LoginServlet() {
@@ -30,10 +34,10 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		/*System.out.println("LOG: doGet();");
+		System.out.println("LOG: doGet();");
 		String loginFormUsername = request.getParameter("loginFormUsername");
 		String loginFormPassword = request.getParameter("loginFormPassword");
-		System.out.println("LOG: " + loginFormUsername + " - " + loginFormPassword);*/
+		System.out.println("LOG: " + loginFormUsername + " - " + loginFormPassword);
 
 	}
 
@@ -42,15 +46,18 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String loginFormUsername = MyMD5.encrypt(request.getParameter("loginFormUsername"));
-		String loginFormPassword = MySHA512.encrypt(request.getParameter("loginFormPassword"));
+		HttpSession session = request.getSession();
 		
-		try {
-			if (loginDao.validate(loginFormUsername, loginFormPassword)) {
-				// LOGIN SUCCESS
+		String encryptedUsername = MyMD5.encrypt(request.getParameter("loginFormUsername"));
+		String encryptedPassword = MySHA512.encrypt(request.getParameter("loginFormPassword"));
+		
+		AuthenticationDto authDto = new AuthenticationDto(encryptedUsername, encryptedPassword, "");
+		authDto = authService.authentic(authDto);
+		
+			if (authDto.lToken() != null && !authDto.lToken().isBlank() && !authDto.lToken().isEmpty()) {
+				// AUTENTICAÇÃO COM SUCESSO.
+				session.setAttribute("authDto", authDto);
 				request.setAttribute("logedUsername", request.getParameter("loginFormUsername"));
-				request.setAttribute("encryptedUsername", loginFormUsername);
-				request.setAttribute("encryptedPassword", loginFormPassword);
 				RequestDispatcher rd = request.getRequestDispatcher("restricted-v1/registration.jsp");
 				rd.forward(request, response);
 			} else {
@@ -58,13 +65,6 @@ public class LoginServlet extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 				rd.forward(request, response);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 }
