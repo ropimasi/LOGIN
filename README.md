@@ -47,20 +47,29 @@ _(dev.ropimasi.demo.login)_
 <a name="description-screenshots"></a>
 ### DESCRIPTION - SCREENSHOTS
 ##### Database (under developing):  
-![logindb](resource/login-screenshot-1-db.png)
+![logindb](resource/img/login-screenshot-1-db.png)
 
 &nbsp;  
 
 ##### User Interface (under developing):  
-![login user interface](resource/login-screenshot-2-login.png)
-![login user interface](resource/login-screenshot-3-restricted.png)
+![login user interface](resource/img/login-screenshot-2-login.png)
+![login user interface](resource/img/login-screenshot-3-restricted.png)
 
 &nbsp;  
 &nbsp;  
 &nbsp;  
 
 <a name="techniques"></a>
-## TECHNIQUES USED
+## TECHNOLOGIES AND TECHNIQUES USED
+* Java
+* JSP (Java Server Pages)
+* HTML, CSS
+* Relational Database (PostgreSQL)
+* Apache Tomcat  
+// TO DO...  
+* MVC archteture
+* Servlets
+* DAOs
 // TO DO...  
 
 &nbsp;  
