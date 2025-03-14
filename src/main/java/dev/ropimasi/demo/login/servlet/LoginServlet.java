@@ -24,6 +24,10 @@ public class LoginServlet extends HttpServlet {
 	private PasswordDao loginDao = new PasswordDao();
 	private AuthenticationService authService = new AuthenticationService();
 
+	/* FIXME: corrigir a Servlet associado com a RestrictedFilter.
+	 * Caminho feliz está correto.
+	 * Caminho errado está defeito. Onde deveria ser redirecionado para tela inicial de login
+	 * não está assim fazendo. */
 
 	public LoginServlet() {
 		super();

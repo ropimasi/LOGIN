@@ -30,7 +30,10 @@ public class RestrictedFilter extends HttpFilter implements Filter {
 	private static Connection conn;
 	private LoginDao loginDao = new LoginDao();
 
-
+/* FIXME: corrigir o filtro associado com a LoginServlet.
+ * Caminho feliz está correto.
+ * Caminho errado está defeito. Onde deveria ser redirecionado para tela inicial de login
+ * não está assim fazendo. */
 
 	public RestrictedFilter() {
 		super();

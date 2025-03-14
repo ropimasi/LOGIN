@@ -34,7 +34,7 @@ _(dev.ropimasi.demo.login)_
 
 <a name="description"></a>
 ## DESCRIPTION
-* SUBJECT: Java application to change the wallpaper of Gnome Desktop Environment;
+* SUBJECT: Java web mini demo application performes login to enter in the restrict page of an application;
 * PROJECT NAME: **LOGIN**;
 * LIBRARY NAME: **---**;
 * WHAT IS: **LOGIN** is a small software aims to change the wallpaper image of Gnome Desktop randomly. Developed for Linux with Gnome Desktop Environment. More information about versions and compatibility can be found below;
@@ -46,13 +46,14 @@ _(dev.ropimasi.demo.login)_
 
 <a name="description-screenshots"></a>
 ### DESCRIPTION - SCREENSHOTS
-##### ...:  
-![...](...)
+##### Database (under developing):  
+![logindb](resource/login-screenshot-1-db.png)
 
 &nbsp;  
 
-##### ...:  
-![...](...)
+##### User Interface (under developing):  
+![login user interface](resource/login-screenshot-2-login.png)
+![login user interface](resource/login-screenshot-3-restricted.png)
 
 &nbsp;  
 &nbsp;  
