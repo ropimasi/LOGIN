@@ -1,5 +1,6 @@
 package dev.ropimasi.demo.login.servlet;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -43,6 +44,12 @@ public class LoginServlet extends HttpServlet {
 		String loginFormUsername = MyMD5.encrypt(request.getParameter("loginFormUsername"));
 		String loginFormPassword = MySHA512.encrypt(request.getParameter("loginFormPassword"));
 		System.out.println("LOG: " + loginFormUsername + " - " + loginFormPassword);
+		
+		request.setAttribute("logedUsername", request.getParameter("loginFormUsername"));
+		request.setAttribute("encryptedUsername", loginFormUsername);
+		request.setAttribute("encryptedPassword", loginFormPassword);
+		RequestDispatcher rd = request.getRequestDispatcher("restricted-v1/registration.jsp");
+		rd.forward(request, response);
 	}
 
 }
