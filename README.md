@@ -1,5 +1,5 @@
 # LOGIN
-Login section for a web application demo.  
+Login section for a web application (Demo).  
 _(dev.ropimasi.demo.login)_  
 
 &nbsp;  
@@ -34,10 +34,10 @@ _(dev.ropimasi.demo.login)_
 
 <a name="description"></a>
 ## DESCRIPTION
-* SUBJECT: Java web mini demo application performes login to enter in the restrict page of an application;
+* SUBJECT: Demo java-web application performes login;
 * PROJECT NAME: **LOGIN**;
 * LIBRARY NAME: **---**;
-* WHAT IS: **LOGIN** is a small software aims to change the wallpaper image of Gnome Desktop randomly. Developed for Linux with Gnome Desktop Environment. More information about versions and compatibility can be found below;
+* WHAT IS: **LOGIN** is a small demo java-web application performes login using relational database (PostgreSQL) to enter in the restrict page of an application.
 * TO WIT: The **LOGIN** and its resources are a project sample, which I have developing to demonstrate some of my abilities. The **LOGIN** project belongs to my personal portfolio. Its detailed project can be followed just here on GitHub: [github.com/users/ROPIMASI/projects/](https://github.com/users/ROPIMASI/projects/). It is also found on my web-portfolio: [ropimasi.dev/portfolio](https://ropimasi.dev/portfolio).  
 
 &nbsp;  
@@ -47,13 +47,13 @@ _(dev.ropimasi.demo.login)_
 <a name="description-screenshots"></a>
 ### DESCRIPTION - SCREENSHOTS
 ##### Database (under developing):  
-![logindb](resource/img/login-screenshot-1-db.png)
+![logindb](src/main/resource/img/login-screenshot-1-db.png)
 
 &nbsp;  
 
 ##### User Interface (under developing):  
-![login user interface](resource/img/login-screenshot-2-login.png)
-![login user interface](resource/img/login-screenshot-3-restricted.png)
+![login user interface](src/main/resource/img/login-screenshot-2-login.png)
+![login user interface](src/main/resource/img/login-screenshot-3-restricted.png)
 
 &nbsp;  
 &nbsp;  
@@ -111,7 +111,7 @@ Thus, this project uses **_SemVer_** for its versioning. **_SemVer_** is a speci
 
 <a name="features"></a>
 ## FEATURES
-### Features in current version (0.1.0)
+### Features in current version (0.0.1-dev-202503141809)
   + A...
   + B...  
   + C...
