@@ -3,56 +3,44 @@ package dev.ropimasi.demo.login.connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
-import java.io.InputStream;
-import java.io.IOException;
 
 
 
 
 public class SingletonConnection {
 
-	private static SingletonConnection instance;
-	private Connection conn;
+	private static final String dbUser = "postgres";
+	private static final String dbPass = "postgres";
+	private static final String dbUrl = "jdbc:postgresql://localhost:5432/logindb?autoReconnect=treu";
+	private static Connection conn = null;
+
+	static {
+		connect();
+	}
 
 
 
-	private SingletonConnection() {
+	private static void connect() {
 		try {
-			Properties props = new Properties();
-			InputStream inputStream = getClass().getClassLoader()
-					.getResourceAsStream("postgresql.properties");
-			props.load(inputStream);
-
-			String url = props.getProperty("db.url");
-			String user = props.getProperty("db.user");
-			String password = props.getProperty("db.password");
-
-			Class.forName("org.postgresql.Driver");
-			conn = DriverManager.getConnection(url, user, password);
-		} catch (ClassNotFoundException | SQLException | IOException e) {
+			if (conn == null) {
+				Class.forName("org.postgresql.Driver");
+				conn = DriverManager.getConnection(dbUrl, dbUser, dbPass);
+				conn.setAutoCommit(false);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 
 
-	public static synchronized SingletonConnection getInstance() {
-		if (instance == null) {
-			instance = new SingletonConnection();
-		}
-		return instance;
-	}
-
-
-
-	public Connection getConnection() {
+	public static Connection getConnection() {
 		return conn;
 	}
 
 
 
-	public void closeConnection() {
+	public static void closeConnection() {
 		try {
 			if (conn != null && !conn.isClosed()) {
 				conn.close();
